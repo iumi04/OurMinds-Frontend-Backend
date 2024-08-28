@@ -1,0 +1,129 @@
+.today-btn {
+    border-radius: 8px;
+    background: var(--Primary-700, #678561);
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #678561;
+}
+
+
+.drop-down {
+    color: #678561;
+    display: flex;
+    height: 32px;
+    padding: 4px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--Primary-700, #678561);
+    background: var(--Gray-0, #FFF);
+}
+
+.btn-check:active+.btn-success,
+.btn-check:checked+.btn-success,
+.btn-success.active,
+.btn-success:active,
+.show>.btn-success.dropdown-toggle {
+    color: #678561 !important;
+
+    background: var(--Gray-0, #FFF) !important;
+    border-color: #678561 !important;
+}
+
+.calender-cards {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.evening-img::before {
+    background: url("../../assets/images/evening.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 125px;
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 275px !important;
+    }
+
+    .heading-content h1 {
+        font-size: 18px;
+    }
+
+    #calendar .calender-cards {
+        display: block !important;
+
+    }
+
+
+}
+
+
+
+.evening-img {
+    background-color: #f6f6f6;
+    padding: 20px;
+    height: auto;
+}
+
+#calendar .container {
+    max-width: 1200px;
+}
+
+#calendar .calender-cards {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card.green-card {
+    background-color: #e0ffe0;
+}
+
+.card.purple-card {
+    background-color: #e0e0ff;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-date {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-list .everything {
+    font-size: 12px;
+}
+
+.card-list .everything.selected {
+    text-decoration: line-through;
+    color: grey;
+}

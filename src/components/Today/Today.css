@@ -1,0 +1,280 @@
+.heading-content h1 {
+    color: var(--Gray-950, #131612);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 36px;
+}
+
+.date p {
+    text-align: left;
+    color: var(--Gray-700, #545F50);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    padding-left: 35px;
+}
+
+.prompt-content {
+    color: var(--Gray-950, #131612);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+
+.prompts-text {
+    color: var(--Gray-700, #545F50);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    padding-right: 50px;
+}
+
+.today-section {
+    background: #fff;
+    width: 100%;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.reflection p {
+    color: var(--Gray-800, #333539);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+
+}
+
+.mindfulness p {
+    color: var(--Gray-950, #131612);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.input-text input {
+    height: 96px;
+    padding: 7px 0px 73px 12px;
+    width: 100%;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Gray-100, #F5F5F5);
+    border: 1px solid var(--Gray-0, #FFF);
+}
+
+.input-text input ::placeholder {
+    color: var(--Gray-700, #545F50);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.input-texts input {
+    display: flex;
+    height: 96px;
+    width: 100%;
+    padding: 7px 349px 73px 12px;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Gray-100, #F5F5F5);
+    border: 1px solid var(--Gray-0, #FFF);
+}
+
+.input-texts input ::placeholder {
+    color: var(--Gray-700, #545F50);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.decor-img {
+    background-image: url("../../assets/images/decor.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+.modal-and-sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+.modal-and-sidebar .modal {
+    margin-right: 20px;
+}
+
+.additional-component {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 300px;
+    /* Adjust width as needed */
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.ql-container {
+    font-family: Arial, sans-serif;
+    color: #545F50;
+}
+
+.ql-editor::before {
+    color: #545F50;
+    font-style: italic;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete {
+    margin-right: auto;
+}
+
+.cancel-btn {
+    margin-right: 10px;
+}
+
+
+
+.emoji-next-to-plus {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    z-index: 1050;
+}
+
+.emoji-next-to-mindfulness {
+    position: absolute;
+    top: 300px;
+    right: 50px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    z-index: 1050;
+
+}
+
+.modal-content {
+    width: 100%;
+    text-align: center;
+    left: 18%;
+}
+
+/* .modal-content {
+    width: 64%;
+    left: 7%;
+} */
+
+/* .modal-dialog.modal-lg {
+    top: 15%;
+} */
+
+@media (max-width: 768px) {
+
+    .section-prompt.overflow-hidden {
+        margin-bottom: 13px;
+    }
+
+    .good-evening {
+
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 100%;
+        left: 0;
+    }
+
+    .modal-dialog.modal-lg {
+        top: 0%;
+    }
+
+    .input-texts input {
+        display: flex;
+        height: 96px;
+        width: 100%;
+        padding: 42px;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 8px;
+        background: var(--Gray-100, #F5F5F5);
+        border: 1px solid var(--Gray-0, #FFF);
+    }
+}
+
+.prompt-modal-today .modal-dialog {
+    max-width: 100%;
+}
+
+.prompt-modal-today .modal-content {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    width: 80%;
+}
+
+.prompt-modal-today .modal-header {
+    border: none;
+}
+
+.close-prmpt-modal .btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: .25em .25em;
+    color: #fff;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    border: 0;
+    border-radius: .25rem;
+    opacity: 1;
+    filter: brightness(1) invert(1);
+    background-color: antiquewhite;
+}
+
+
+/* ReactQuill css added*/
+
+
+.ql-editor.ql-blank {
+    height: 150px;
+}
+
+.ql-editor {
+    height: 150px !important;
+}
+
+button.btn.btn-primary.save-reflection-data {
+    padding: 6px 31px;
+    font-size: 22px;
+    border-radius: 12px;
+    background: #678561;
+    border: 1px solid;
+}
+
+
+svg.date-nav-icon {
+    font-size: 20px;
+}

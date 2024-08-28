@@ -1,0 +1,108 @@
+.card-list {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: var(--Gray-0-70, rgba(255, 255, 255, 0.70));
+}
+
+.checkbox-container {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-container input:checked~.checkmark:after {
+    content: "\2713";
+    font-size: 16px;
+    color: white;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 3px;
+    background-color: #678561;
+}
+
+.everything.selected {
+    text-decoration: line-through;
+    color: #999a9c;
+
+}
+
+.checkmark {
+    position: relative;
+    height: 20px;
+    background-color: #E0E5E0;
+    border-radius: 3px;
+    display: block;
+    width: 20px;
+}
+
+.card {
+    display: flex;
+    width: 275px;
+    padding: 20px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    background: #F5F5F5;
+    border: none;
+    border-radius: 15px;
+    height: 320px;
+}
+
+.card p {
+    color: var(--Gray-600, #131612);
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0;
+    text-align: start;
+}
+
+
+.green-card {
+    background: #DFEFDC;
+    background-image: url('../../../assets/images/Ellipse 20.png');
+}
+
+.purple-card {
+    background: #E1DEFF;
+    background-image: url('../../../assets/images/lastCard.png');
+}
+
+.green-card,
+.purple-card {
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 275px;
+    }
+}
+
+.card.undefined {
+    padding: 7px !important;
+}
+
+.card.green-card {
+    padding: 7px !important;
+}
+
+.card.purple-card {
+    padding: 7px !important;
+}
+
+.card {
+    margin-bottom: 14px;
+}
