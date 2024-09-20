@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-//use the env variables
-const { MongoClient } = require("mongodb")
-require("dotenv").config({path: "./server/config.env"}) 
+const API_BASE_URL = 'https://localhost:3001/api';
+
 
 
 const apiService = {
@@ -34,7 +33,7 @@ const apiService = {
     try {
       console.log("Sending journal entry data:", entryData);
       const response = await axios.post(
-        `${ATLAS_URI}/journal-entries`,  //references ATLAS_URI in config.env
+        `${API_BASE_URL}/journal-entries`,  //references ATLAS_URI in config.env
         entryData
       );
       console.log("Server response:", response.data);
