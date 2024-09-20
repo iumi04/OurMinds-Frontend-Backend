@@ -3,7 +3,6 @@ import axios from 'axios';
 const API_BASE_URL = 'https://localhost:3001/api';
 
 
-
 const apiService = {
   // Authentication added here for login system (TEST) -- Umi
   register: async (userData) => {
