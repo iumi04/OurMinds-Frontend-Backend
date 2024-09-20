@@ -1,11 +1,14 @@
+//connect the mongodb backend to node.js to express??
+
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config(); // Load environment variables from .env file
 
-const connectDB = require("./utils/database"); // Import your database connection
-const authRoutes = require("./routes/authRoutes"); // Import authentication routes
+const connectDB = require("./server/connect.cjs"); // Import your database connection, changed from database to connect.cjs
+const authRoutes = require("./routes/authRoutes.js"); // Import authentication routes
 
 const app = express();
 
@@ -13,8 +16,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json()); // Parse JSON bodies
 
-// Connect to MongoDB --> We are actually going to use the server folder and utilize js packages and connect to mongo api 
-connectDB();
+connectDB(); //just kidding we need this
 
 // Routes
 app.use("/api/auth", authRoutes); // Register the authentication routes

@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb")
-require("dotenv").config({path: "./config.env"}) //access for dotenv library and to use config.env for environmental variables
+require("dotenv").config({path: "./server/config.env"}) //access for dotenv library and to use config.env for environmental variables
 
 async function main(){
 

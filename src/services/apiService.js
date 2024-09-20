@@ -4,7 +4,6 @@ import axios from 'axios';
 const { MongoClient } = require("mongodb")
 require("dotenv").config({path: "./config.env"}) 
 
-const API_BASE_URL = 'ATLAS_URI'; //might be redundant?
 
 const apiService = {
   // Authentication added here for login system (TEST) -- Umi
