@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3001/api'; // Ensure this matches your backend URL
+//use the env variables
+const { MongoClient } = require("mongodb")
+require("dotenv").config({path: "./config.env"}) 
+
+const API_BASE_URL = 'ATLAS_URI'; //might be redundant?
 
 const apiService = {
   // Authentication added here for login system (TEST) -- Umi
@@ -31,7 +35,7 @@ const apiService = {
     try {
       console.log("Sending journal entry data:", entryData);
       const response = await axios.post(
-        `${API_BASE_URL}/journal-entries`,
+        `${ATLAS_URI}/journal-entries`,  //references ATLAS_URI in config.env
         entryData
       );
       console.log("Server response:", response.data);

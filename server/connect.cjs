@@ -14,17 +14,15 @@ async function main(){
         //start of debug checking
         console.log("MongoDB URI:", process.env.ATLAS_URI);  //make sure we are connecting
         console.log("Connecting to MongoDB...");
-        await client.connect();
+        await client.connect();  //using await for promise chain (not instantaneous)
         console.log("Connected successfully!");
         //end of debug check
 
         //getting collections from database
         const collections = await client.db("App").listCollections().toArray();
         console.log("Collections fetched:", collections);
-        await client.connect()         //connects to client now
 
-         //needs await keyword bc its not instantanious
-        collections.forEach((collection) => console.log(collection.s.namespace.collection))
+        //collections.forEach((collection) => console.log(collections.s.namespace.collections))
         //loops through every single collection in collection array
 
 
