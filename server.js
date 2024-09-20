@@ -13,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json()); // Parse JSON bodies
 
-// Connect to MongoDB
+// Connect to MongoDB --> We are actually going to use the server folder and utilize js packages and connect to mongo api 
 connectDB();
 
 // Routes
@@ -28,3 +28,4 @@ app.listen(PORT, () => {
 app.get("/api", (req, res) => {
   res.send("API is working. Please use /api/auth for authentication routes.");
 });
+
