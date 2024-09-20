@@ -10,6 +10,7 @@ async function connectDB(){
     const client = new MongoClient(Db);
 
     //for smoothness added try and catch block
+
     try {
 
         //start of debug checking
@@ -18,20 +19,20 @@ async function connectDB(){
         await client.connect();  //using await for promise chain (not instantaneous)
         console.log("Connected successfully!");
         //end of debug check
-
+/*
         //getting collections from database
         const collections = await client.db("App").listCollections().toArray();
         console.log("Collections fetched:", collections);
 
         //collections.forEach((collection) => console.log(collections.s.namespace.collections))
         //loops through every single collection in collection array
-
+*/
 
     } catch(e) {
         console.error(e)
     } finally {
         await client.close()
     }
-    
+
 }
 module.exports = connectDB;
