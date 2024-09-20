@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //use the env variables
 const { MongoClient } = require("mongodb")
-require("dotenv").config({path: "./config.env"}) 
+require("dotenv").config({path: "./server/config.env"}) 
 
 
 const apiService = {

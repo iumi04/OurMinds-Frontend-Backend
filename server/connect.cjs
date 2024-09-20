@@ -1,12 +1,13 @@
 const { MongoClient } = require("mongodb")
 require("dotenv").config({path: "./server/config.env"}) //access for dotenv library and to use config.env for environmental variables
 
-async function main(){
 
-    const Db = process.env.ATLAS_URI
+async function connectDB(){
+
+    const Db = process.env.ATLAS_URI;
     // to hold value of atlas uri string
     //now u can access environemtnal variables with process.env
-    const client = new MongoClient(Db)
+    const client = new MongoClient(Db);
 
     //for smoothness added try and catch block
     try {
@@ -33,5 +34,4 @@ async function main(){
     }
     
 }
-
-main()
+module.exports = connectDB;

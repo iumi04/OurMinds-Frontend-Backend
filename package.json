@@ -17,7 +17,7 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.9.0",
-    "mongoose": "^8.5.1",
+    "mongoose": "^8.6.3",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
     "react-bootstrap-sidebar-menu": "^2.0.3",
