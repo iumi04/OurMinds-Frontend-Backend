@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 import User from "../models/Users.js";
 import JournalEntry from '../models/JournalEntry.js';
 import jwt from 'jsonwebtoken';
+=======
+import axios from 'axios';
+
+const API_BASE_URL = 'https://localhost:3001/api/auth/register';
+>>>>>>> Stashed changes
 
 // Replace with your JWT secret key (should be stored securely)
 const JWT_SECRET = 'your_jwt_secret_key';
