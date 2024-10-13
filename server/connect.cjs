@@ -1,6 +1,9 @@
 const { MongoClient } = require("mongodb")
 require("dotenv").config({path: "./server/config.env"}) //access for dotenv library and to use config.env for environmental variables
 
+const client = new MongoClient(process.env.ATLAS_URI);
+let db;
+
 
 async function connectDB(){
 
@@ -18,21 +21,15 @@ async function connectDB(){
         console.log("Connecting to MongoDB...");
         await client.connect();  //using await for promise chain (not instantaneous)
         console.log("Connected successfully!");
-        //end of debug check
-/*
-        //getting collections from database
-        const collections = await client.db("App").listCollections().toArray();
-        console.log("Collections fetched:", collections);
 
-        //collections.forEach((collection) => console.log(collections.s.namespace.collections))
-        //loops through every single collection in collection array
-*/
+        db = client.db("Bagforjournalcontent"); // Set your database name
 
+  
+        
     } catch(e) {
         console.error(e)
-    } finally {
-        await client.close()
-    }
+        throw e;
+    } 
 
 }
-module.exports = connectDB;
+module.exports = { connectDB, client }; // Export the connectDB function and client

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://localhost:3001/api';
+const API_BASE_URL = 'https://ec2-54-174-136-185.compute-1.amazonaws.com/';
 
 
 const apiService = {
