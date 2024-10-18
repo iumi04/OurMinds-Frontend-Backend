@@ -32,7 +32,7 @@ const apiService = {
     try {
       console.log("Sending journal entry data:", entryData);
       const response = await axios.post(
-        `${API_BASE_URL}/journal-entries`,  //references ATLAS_URI in config.env
+        `${API_BASE_URL}/auth/insert`,  //references ATLAS_URI in config.env
         entryData
       );
       console.log("Server response:", response.data);

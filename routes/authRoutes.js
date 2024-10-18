@@ -2,6 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
+const JournalEntry = require("../JournalEntry.js");
 const User = require("../models/Users"); // Import the User model
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -63,9 +64,14 @@ router.post("/insert", async (req, res) => {
   try {
       const db = client.db("App"); // Access the database
       const collection = db.collection("entries"); // Access the collection
-      const result = await collection.insertOne(newDocument); // Insert the document
-      console.log("Document inserted with _id:", result.insertedId); // Log the inserted ID
-      res.status(201).send({ id: result.insertedId }); // Send back the inserted ID
+      
+      //const result = await collection.insertOne(newDocument); // Insert the document
+      //console.log("Document inserted with _id:", result.insertedId); // Log the inserted ID
+      //res.status(201).send({ id: result.insertedId }); // Send back the inserted ID
+      const result = await apiService.createJournalEntry(newDocument); // Use the existing function
+      console.log("Document inserted with _id:", result._id); // Log the inserted ID
+      res.status(201).send({ id: result._id }); // Send back the inserted ID
+  
   } catch (e) {
       console.error(e);
       res.status(500).send("Error inserting document"); // Send error response
