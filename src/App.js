@@ -20,8 +20,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<Today />} />
                 {/* <Route path="/calendar" element={<Calendar />} />
-                <Route path="/prompt" element={<Prompts />} />
-                <Route path="/login" element={<Login />} /> */}
+                <Route path="/prompt" element={<Prompts />} /> */}
+                <Route path="/login" element={<Login />} />
               </Routes>
             </div>
           </Router>

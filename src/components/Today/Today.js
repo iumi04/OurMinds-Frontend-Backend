@@ -74,8 +74,7 @@ const Today = () => {
     const handleLogout = () => {
       localStorage.removeItem("token");
       setToken(null);
-      window.location.href =
-        "https://omj.auth.us-east-1.amazoncognito.com/login?response_type=code&client_id=7rv65a7642dht0an8ii0n1nneo&redirect_uri=http://localhost:3000/callback";
+      navigate("/login");
     };
 
     const changeDate = (direction) => {
