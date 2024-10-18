@@ -1,14 +1,12 @@
-<<<<<<< Updated upstream
 import User from "../models/Users.js";
-import JournalEntry from '../models/JournalEntry.js';
-import jwt from 'jsonwebtoken';
-=======
-import axios from 'axios';
+import JournalEntry from "../models/JournalEntry.js";
+import jwt from "jsonwebtoken";
+import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = "http://localhost:3001/api";
 
 // Replace with your JWT secret key (should be stored securely)
-const JWT_SECRET = 'your_jwt_secret_key';
+const JWT_SECRET = "your_jwt_secret_key";
 
 const apiService = {
   // Authentication: Register a new user
@@ -16,7 +14,7 @@ const apiService = {
     try {
       const user = new User(userData);
       await user.save();
-      console.log('User registered successfully:', user);
+      console.log("User registered successfully:", user);
     } catch (error) {
       console.error("Error registering user:", error);
       throw error;
@@ -28,16 +26,18 @@ const apiService = {
     try {
       const user = await User.findOne({ username: userData.username });
       if (!user) {
-        throw new Error('User not found');
+        throw new Error("User not found");
       }
 
       const isPasswordValid = await user.comparePassword(userData.password);
       if (!isPasswordValid) {
-        throw new Error('Invalid credentials');
+        throw new Error("Invalid credentials");
       }
 
       // Generate a JWT token
-      const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+        expiresIn: "1h",
+      });
       return token;
     } catch (error) {
       console.error("Error logging in:", error);
@@ -69,7 +69,7 @@ const apiService = {
     try {
       const journalEntry = await JournalEntry.findOne({ date, user: userId });
       if (!journalEntry) {
-        throw new Error('No journal entry found for this date');
+        throw new Error("No journal entry found for this date");
       }
       return journalEntry;
     } catch (error) {
@@ -81,9 +81,11 @@ const apiService = {
   // READ: Get the previous journal entry
   getPreviousJournalEntry: async (userId) => {
     try {
-      const journalEntry = await JournalEntry.findOne({ user: userId }).sort({ date: -1 });
+      const journalEntry = await JournalEntry.findOne({ user: userId }).sort({
+        date: -1,
+      });
       if (!journalEntry) {
-        throw new Error('No previous journal entry found');
+        throw new Error("No previous journal entry found");
       }
       return journalEntry;
     } catch (error) {
