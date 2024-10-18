@@ -1,4 +1,6 @@
 // script.js
+import './Register.css';
+
 
 // Function to create the form and append it to the document
 function createRegisterForm() {
