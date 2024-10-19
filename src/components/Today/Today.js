@@ -207,13 +207,13 @@ const Today = () => {
                                             <img src={Arrow} alt='Arrow' />
                                         </div>
                                         <div className='reflection'>
-                                            <p>Today's reflection</p>
+                                            <p>Prompt1</p>
                                         </div>
                                     </div>
                                     <ReactQuill
                                         value={reflectionContent}
                                         onChange={(value) => handleEditorChange('reflection', value)}
-                                        placeholder="Today's reflection..."
+                                        placeholder="For 30day Challenge: Follow the prompt1 from the email..."
                                         theme="snow"
                                         modules={{
                                             toolbar: [
@@ -237,13 +237,13 @@ const Today = () => {
                                                 <img src={Arrow} alt='Arrow' />
                                             </div>
                                             <div className='mindfulness'>
-                                                <p>Mindfulness Moments</p>
+                                                <p>Prompt2</p>
                                             </div>
                                         </div>
                                         <ReactQuill
                                             value={mindfulnessContent}
                                             onChange={(value) => handleEditorChange('mindfulness', value)}
-                                            placeholder="Mindfulness Moments..."
+                                            placeholder="For 30day Challenge: Follow the prompt2 from the email..."
                                             theme="snow"
                                             modules={{
                                                 toolbar: [
@@ -269,13 +269,13 @@ const Today = () => {
                                             <img src={Arrow} alt='Arrow' />
                                         </div>
                                         <div className='gratitude'>
-                                            <p>Gratitude Log</p>
+                                            <p>Dream Log</p>
                                         </div>
                                     </div>
                                     <ReactQuill
                                         value={gratitudeContent}
                                         onChange={(value) => handleEditorChange('gratitude', value)}
-                                        placeholder="Gratitude Log..."
+                                        placeholder="Write about your dreams..."
                                         theme="snow"
                                         modules={{
                                             toolbar: [

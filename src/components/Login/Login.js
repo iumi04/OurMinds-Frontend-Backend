@@ -1,55 +1,27 @@
 import React, { useState } from 'react';
 import './Login.css';
 import apiService from '../../services/apiService';
-import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
-export default function Login({ setToken }) {
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      const token = await apiService.login({ username, password });
-      localStorage.setItem("token", token);
-      setToken(token);
-      navigate("/today");
-    } catch (err) {
-      setError("Invalid username or password");
-    }
-  };
+
+export default function Login() {
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
 
   return (
     <div className="login-wrapper">
-      <h1>Please Log In🙏</h1>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={(e) => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <div className="signup-link">
-          <p>
-            Don't have an account yet?{" "}
-            <span onClick={() => navigate("/register")} className="link">
-              Sign up
-            </span>
-          </p>
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+      <h1>{isAuthenticated ? `Welcome, ${user?.nickname}! 🎉` : 'Please Log In 🙏'}</h1>
+      <div>
+        {isAuthenticated ? (
+          <button onClick={() => logout({ returnTo: window.location.origin })}>
+            Log Out
+          </button>
+        ) : (
+          <button onClick={() => loginWithRedirect()}>
+            Log In with Auth0
+          </button>
+        )}
+      </div>
     </div>
   );
 }
