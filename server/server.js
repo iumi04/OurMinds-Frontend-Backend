@@ -12,6 +12,7 @@ const authRoutes = require("../routes/authRoutes.js"); // Import authentication 
 const app = express();
 const { auth } = require('express-openid-connect');
 
+// Middleware
 const config = {
   authRequired: false,
   auth0Logout: true,
@@ -21,7 +22,6 @@ const config = {
   issuerBaseURL: process.env.REACT_APP_AUTH_URL
 };
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(express.json()); // Middleware to parse JSON bodies
@@ -49,4 +49,9 @@ app.get("/api", (req, res) => {
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
+//proctetive thing for user profile
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
 });
