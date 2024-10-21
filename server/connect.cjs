@@ -1,4 +1,6 @@
 const { MongoClient } = require("mongodb")
+const mongoose = require("mongoose"); // Change to Mongoose
+
 require("dotenv").config({path: "./server/config.env"}) //access for dotenv library and to use config.env for environmental variables
 
 const client = new MongoClient(process.env.ATLAS_URI);
@@ -17,10 +19,14 @@ async function connectDB(){
     try {
 
         //start of debug checking
-        console.log("MongoDB URI:", process.env.ATLAS_URI);  //make sure we are connecting
-        console.log("Connecting to MongoDB...");
-        await client.connect();  //using await for promise chain (not instantaneous)
+        //console.log("MongoDB URI:", process.env.ATLAS_URI);  //make sure we are connecting
+        //console.log("Connecting to MongoDB...");
+        //await client.connect();  //using await for promise chain (not instantaneous)
+        //console.log("Connected successfully!");
+
+        await mongoose.connect(Db, { useNewUrlParser: true, useUnifiedTopology: true }); // Use Mongoose to connect
         console.log("Connected successfully!");
+
 
         db = client.db("Bagforjournalcontent"); // Set your database name
 

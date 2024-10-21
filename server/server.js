@@ -15,10 +15,10 @@ const { auth } = require('express-openid-connect');
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: REACT_APP_AUTH_SECRET,
-  baseURL: REACT_APP_AUTH_BASE_URL,
-  clientID: REACT_APP_AUTH_CLIENT_ID,
-  issuerBaseURL: REACT_APP_AUTH_URL
+  secret: process.env.REACT_APP_AUTH_SECRET,
+  baseURL: process.env.REACT_APP_AUTH_BASE_URL,
+  clientID: process.env.REACT_APP_AUTH_CLIENT_ID,
+  issuerBaseURL: process.env.REACT_APP_AUTH_URL
 };
 
 // Middleware

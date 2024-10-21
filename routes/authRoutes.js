@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const JournalEntry = require("../JournalEntry.js");
+const JournalEntry = require("../models/JournalEntry");
 const User = require("../models/Users"); // Import the User model
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -23,7 +23,11 @@ router.post("/register", async (req, res) => {
     // Hash the password and create the user
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, password: hashedPassword });
+    //need to log this for debugging
+    console.log("Creating new user:", newUser);
+
     await newUser.save();
+    console.log("User created successfully:", newUser);
 
     res.status(201).json({ message: "User created successfully" });
   } catch (err) {
