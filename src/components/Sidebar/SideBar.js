@@ -60,13 +60,13 @@ const Sidebar = () => {
             className={selectedItem === "Avtar" ? "selected" : ""}
             onClick={() => handleItemClick("Avtar")}
           >
-            <Link to="/prompt">
+            {/* <Link to="/prompt">
               <img src={Avtar} alt="prompts" width={30} height={30} />
               <span className="px-2">Ophelia W.</span>
               <div className="px-5">
                 <img src={Arrow} alt="Arrow" width={25} height={25} />
               </div>
-            </Link>
+            </Link> */}
           </li>
         </ul>
       </div>
