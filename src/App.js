@@ -1,16 +1,15 @@
-import React from 'react';
-import { Auth0Provider } from '@auth0/auth0-react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar/SideBar';
-import Today from "./components/Today/Today"
-import Prompts from './components/Prompts/Prompts';
-import Calendar from './components/Calendar/Calendar';
+import React from "react";
+import { Auth0Provider } from "@auth0/auth0-react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar/SideBar";
+import Today from "./components/Today/Today";
+import Prompts from "./components/Prompts/Prompts";
+import Calendar from "./components/Calendar/Calendar";
 import Login from "./components/Login/Login";
-import Register from './components/Register/Register';
+import Register from "./components/Register/Register";
 
 const auth_URL = process.env.REACT_APP_AUTH_URL;
-
 
 function App() {
   return (
