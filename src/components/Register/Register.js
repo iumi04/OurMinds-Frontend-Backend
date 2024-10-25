@@ -118,4 +118,8 @@ function validateForm(event) {
   console.log("Password:", password);
 }
 
-// Call the function to create the form on page load
+
+
+
+
+export default createRegisterForm;
