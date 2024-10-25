@@ -3,12 +3,21 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-require("dotenv").config();
+require("dotenv").config({path: "./server/config.env"}) //access for dotenv library and to use config.env for environmental variables
 
 const {connectDB, client} = require("./connect.cjs");
 const authRoutes = require("../routes/authRoutes.js");
 const app = express();
-
+const { auth } = require('express-openid-connect');
+const http = require("http");
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.AUTH_SECRET, // Updated to use process.env
+  baseURL: process.env.AUTH_BASE_URL, // Updated to use process.env
+  clientID: process.env.AUTH_CLIENT_ID, // Updated to use process.env
+  issuerBaseURL: process.env.AUTH_URL // Updated to use process.env
+};
 
 const port = process.env.PORT || 3000;
 
