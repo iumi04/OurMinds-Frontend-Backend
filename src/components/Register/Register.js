@@ -119,4 +119,3 @@ function validateForm(event) {
 }
 
 // Call the function to create the form on page load
-window.onload = createRegisterForm;
