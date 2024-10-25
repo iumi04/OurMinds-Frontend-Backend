@@ -15,10 +15,10 @@ const auth_URL = process.env.REACT_APP_AUTH_URL;
 function App() {
   return (
     <Auth0Provider
-      domain={process.env.REACT_APP_AUTH_URL}            // e.g., 'your-tenant.auth0.com'
-      clientId={process.env.REACT_APP_AUTH_CLIENT_ID}       // Auth0 Client ID from your dashboard
+      domain={process.env.REACT_APP_AUTH_URL} // e.g., 'your-tenant.auth0.com'
+      clientId={process.env.REACT_APP_AUTH_CLIENT_ID} // Auth0 Client ID from your dashboard
       authorizationParams={{
-        redirect_uri: window.location.origin // Redirect back to your app after login
+        redirect_uri: window.location.origin, // Redirect back to your app after login
       }}
     >
       <div className="App">
@@ -32,6 +32,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Today />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
                 </Routes>
               </div>
             </Router>
