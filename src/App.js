@@ -8,37 +8,29 @@ import Prompts from "./components/Prompts/Prompts";
 import Calendar from "./components/Calendar/Calendar";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-
-const auth_URL = process.env.REACT_APP_AUTH_URL;
+import LoginButton from "./components/Login/Login";
 
 function App() {
   return (
-    <Auth0Provider
-      domain={process.env.REACT_APP_AUTH_URL} // e.g., 'your-tenant.auth0.com'
-      clientId={process.env.REACT_APP_AUTH_CLIENT_ID} // Auth0 Client ID from your dashboard
-      authorizationParams={{
-        redirect_uri: window.location.origin, // Redirect back to your app after login
-      }}
-    >
-      <div className="App">
-        <div className="container-fluid">
-          <div className="row">
-            <Router>
-              <div className="col-md-3 p-0">
-                <Sidebar />
-              </div>
-              <div className="col-md-9 good-evening">
-                <Routes>
-                  <Route path="/" element={<Today />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                </Routes>
-              </div>
-            </Router>
-          </div>
+    <div className="App">
+      <div className="container-fluid">
+        <div className="row">
+          <Router>
+            <div className="col-md-3 p-0">
+              <Sidebar />
+              <LoginButton /> {/* Added login button in sidebar - adjust placement as needed */}
+            </div>
+            <div className="col-md-9 good-evening">
+              <Routes>
+                <Route path="/" element={<Today />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+              </Routes>
+            </div>
+          </Router>
         </div>
       </div>
-    </Auth0Provider>
+    </div>
   );
 }
 
