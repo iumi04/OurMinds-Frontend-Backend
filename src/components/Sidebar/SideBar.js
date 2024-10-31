@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Sidebar.css';
+import { Link, useLocation } from "react-router-dom";
+import "./Sidebar.css";
 import Logo from "../../assets/images/logo.svg";
 import Today from "../../assets/images/today.svg";
 import Calendar from "../../assets/images/calendar.svg";
@@ -9,34 +9,42 @@ import Avtar from "../../assets/images/Avatar.svg";
 import Arrow from "../../assets/images/right-arow.svg";
 
 const Sidebar = () => {
-    const [selectedItem, setSelectedItem] = useState('today');
+  const [selectedItem, setSelectedItem] = useState("today");
+  const location = useLocation();
 
-    const handleItemClick = (item) => {
-        setSelectedItem(item);
-    };
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
 
-    return (
-      <div className="sidebar">
-        <div className="side-bar-logo">
-          <div className="log-img">
-            <img src={Logo} alt="logo" />
-          </div>
-          <div>
-            <h3 className=" mt-3">OurMinds Journaling</h3>
-          </div>
+  const isLoginPage = location.pathname === "/login";
+
+  // If on the login page, return null to hide the sidebar
+  if (isLoginPage) {
+    return null;
+  }
+
+  return (
+    <div className="sidebar">
+      <div className="side-bar-logo">
+        <div className="log-img">
+          <img src={Logo} alt="logo" />
         </div>
-        <ul>
-          <li
-            className={selectedItem === "today" ? "selected" : ""}
-            onClick={() => handleItemClick("today")}
-          >
-            <Link to="/">
-              <img src={Today} alt="today" width={22} height={22} />
-              <span className="px-2">Today</span>
-            </Link>
-          </li>
-          {/*BRING BACK LATER*/}
-          {/* <li
+        <div>
+          <h3 className=" mt-3">OurMinds Journaling</h3>
+        </div>
+      </div>
+      <ul>
+        <li
+          className={selectedItem === "today" ? "selected" : ""}
+          onClick={() => handleItemClick("today")}
+        >
+          <Link to="/">
+            <img src={Today} alt="today" width={22} height={22} />
+            <span className="px-2">Today</span>
+          </Link>
+        </li>
+        {/*BRING BACK LATER*/}
+        {/* <li
                     className={selectedItem === 'calendar' ? 'selected' : ''}
                     onClick={() => handleItemClick('calendar')}
                 >
@@ -54,23 +62,23 @@ const Sidebar = () => {
                         <span className='px-2'>Prompts</span>
                     </Link>
                 </li> */}
-        </ul>
-        <ul className="last-element">
-          <li
-            className={selectedItem === "Avtar" ? "selected" : ""}
-            onClick={() => handleItemClick("Avtar")}
-          >
-            {/* <Link to="/prompt">
+      </ul>
+      <ul className="last-element">
+        <li
+          className={selectedItem === "Avtar" ? "selected" : ""}
+          onClick={() => handleItemClick("Avtar")}
+        >
+          {/* <Link to="/prompt">
               <img src={Avtar} alt="prompts" width={30} height={30} />
               <span className="px-2">Ophelia W.</span>
               <div className="px-5">
                 <img src={Arrow} alt="Arrow" width={25} height={25} />
               </div>
             </Link> */}
-          </li>
-        </ul>
-      </div>
-    );
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 export default Sidebar;
