@@ -77,7 +77,7 @@ const Today = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: window.location.origin }); //NOTE THIS TAKES U TO THE DEFAULT ORIGIN THINGY WHICH IS /LOGIN. U CAN CHANGE IT HERE
   };
 
   const changeDate = (direction) => {
