@@ -7,7 +7,6 @@ import Today from "./components/Today/Today";
 import Prompts from "./components/Prompts/Prompts";
 import Calendar from "./components/Calendar/Calendar";
 import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
 import LoginButton from "./components/Login/Login";
 
 function App() {
@@ -18,13 +17,13 @@ function App() {
           <Router>
             <div className="col-md-3 p-0">
               <Sidebar />
-              <LoginButton /> {/* Added login button in sidebar - adjust placement as needed */}
+              <LoginButton />{" "}
+              {/* Added login button in sidebar - adjust placement as needed */}
             </div>
             <div className="col-md-9 good-evening">
               <Routes>
                 <Route path="/" element={<Today />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
               </Routes>
             </div>
           </Router>
