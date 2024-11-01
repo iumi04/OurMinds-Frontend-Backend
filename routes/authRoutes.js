@@ -64,21 +64,37 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/insert", async (req, res) => {
-  const newDocument = req.body; // Get the document from the request body
+  console.log("Received request body:", req.body); // Log incoming data
+  const newDocument = req.body;
+  
   try {
-      const db = client.db("App"); // Access the database
-      const collection = db.collection("entries"); // Access the collection
+      if (!client) {
+          console.error("Database client is not connected");
+          return res.status(500).json({ 
+              error: "Database connection not established",
+              details: "MongoDB client is not initialized"
+          });
+      }
+
+      const db = client.db("App");
+      const collection = db.collection("entries");
       
-      //const result = await collection.insertOne(newDocument); // Insert the document
-      //console.log("Document inserted with _id:", result.insertedId); // Log the inserted ID
-      //res.status(201).send({ id: result.insertedId }); // Send back the inserted ID
-      const result = await apiService.createJournalEntry(newDocument); // Use the existing function
-      console.log("Document inserted with _id:", result._id); // Log the inserted ID
-      res.status(201).send({ id: result._id }); // Send back the inserted ID
+      console.log("Attempting to insert document:", newDocument); // Log pre-insertion
+      const result = await collection.insertOne(newDocument);
+      console.log("Insert operation result:", result); // Log full result
+      
+      res.status(201).json({ 
+          id: result.insertedId,
+          message: "Document inserted successfully" 
+      });
   
   } catch (e) {
-      console.error(e);
-      res.status(500).send("Error inserting document"); // Send error response
+      console.error("Detailed database error:", e); // More detailed error logging
+      res.status(500).json({ 
+          error: "Error inserting document", 
+          details: e.message,
+          stack: process.env.NODE_ENV === 'development' ? e.stack : undefined
+      });
   }
 });
 

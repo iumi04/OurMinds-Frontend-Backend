@@ -30,23 +30,25 @@ const apiService = {
   // create journalentry in today's page
   createJournalEntry: async (entryData) => {
     try {
-      console.log("Sending journal entry data:", entryData);
+      console.log("Attempting to send entry data:", entryData);
       const response = await axios.post(
-        `${API_BASE_URL}/auth/insert`,  //references ATLAS_URI in config.env
-        entryData
+        `${API_BASE_URL}/auth/insert`,
+        entryData,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
       console.log("Server response:", response.data);
       return response.data;
     } catch (error) {
-      console.error("Error creating journal entry:", error);
-      if (error.response) {
-        console.error("Error data:", error.response.data);
-        console.error("Error status:", error.response.status);
-      } else if (error.request) {
-        console.error("No response received:", error.request);
-      } else {
-        console.error("Error message:", error.message);
-      }
+      console.error("Full error object:", error);
+      console.error("Error creating journal entry:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
       throw error;
     }
   },
