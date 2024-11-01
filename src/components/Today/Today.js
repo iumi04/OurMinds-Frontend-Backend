@@ -253,7 +253,7 @@ const Today = () => {
                     onChange={(value) =>
                       handleEditorChange("reflection", value)
                     }
-                    placeholder="For 30day Challenge: Follow the prompt1 from the email..."
+                    placeholder="Check your email for prompt1 and respond accordingly..."
                     theme="snow"
                     modules={{
                       toolbar: [
@@ -294,7 +294,7 @@ const Today = () => {
                       onChange={(value) =>
                         handleEditorChange("mindfulness", value)
                       }
-                      placeholder="For 30day Challenge: Follow the prompt2 from the email..."
+                      placeholder="Check your email for prompt2 and respond accordingly..."
                       theme="snow"
                       modules={{
                         toolbar: [
@@ -341,7 +341,7 @@ const Today = () => {
                   <ReactQuill
                     value={gratitudeContent}
                     onChange={(value) => handleEditorChange("gratitude", value)}
-                    placeholder="Write about your dreams..."
+                    placeholder="Write about your dream today..."
                     theme="snow"
                     modules={{
                       toolbar: [
