@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from "react-router-dom";
 
 export default function Login() {
-  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user, logout, getAccessTokenSilently } = useAuth0();
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const getToken = async () => {
+      if (isAuthenticated) {
+        try {
+          const accessToken = await getAccessTokenSilently();
+          setToken(accessToken);
+          console.log("JWT Token:", accessToken); // Log the token for debugging
+          localStorage.setItem('token', accessToken); // Store the token in localStorage
+        } catch (error) {
+          console.error("Error getting access token", error);
+        }
+      }
+    };
+
+    getToken();
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   // If authenticated, redirect to home page
   if (isAuthenticated) {
