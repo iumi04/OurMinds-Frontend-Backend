@@ -4,7 +4,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from "react-router-dom";
 
 export default function Login() {
-  const { loginWithRedirect, isAuthenticated, user, logout, getAccessTokenSilently } = useAuth0();
+  const { 
+    loginWithRedirect, 
+    isAuthenticated, 
+    user, 
+    logout, 
+    getAccessTokenSilently,
+    isLoading 
+  } = useAuth0();
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -13,8 +20,8 @@ export default function Login() {
         try {
           const accessToken = await getAccessTokenSilently();
           setToken(accessToken);
-          console.log("JWT Token:", accessToken); // Log the token for debugging
-          localStorage.setItem('token', accessToken); // Store the token in localStorage
+          console.log("JWT Token:", accessToken); // Added back the token logging
+          localStorage.setItem('token', accessToken);
         } catch (error) {
           console.error("Error getting access token", error);
         }
@@ -23,6 +30,10 @@ export default function Login() {
 
     getToken();
   }, [isAuthenticated, getAccessTokenSilently]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   // If authenticated, redirect to home page
   if (isAuthenticated) {
