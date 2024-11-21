@@ -8,12 +8,29 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import Sidebar from "./components/Sidebar/SideBar"; // Fixed import to match casing
+import Sidebar from "./components/Sidebar/SideBar";
 import Today from "./components/Today/Today";
 import Prompts from "./components/Prompts/Prompts";
 import Calendar from "./components/Calendar/Calendar";
 import Login from "./components/Login/Login";
-import LoginButton from "./components/Login/Login"; // Adjusted for clarity
+import LoginButton from "./components/Login/Login";
+import TestAPI from "./components/TestAPI"; // Add this import
+
+// Create a protected route wrapper
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, isLoading } = useAuth0();
+  const location = useLocation();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+
+  return children;
+};
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -24,19 +41,34 @@ function App() {
         <div className="row">
           <Router>
             <Routes>
-              {/* Route to check if on login page */}
+              {/* Login route */}
               <Route
                 path="/login"
                 element={isAuthenticated ? <Navigate to="/" /> : <Login />}
               />
-              {/* Add all routes here to determine layout */}
+
+              {/* Test API route */}
+              <Route
+                path="/test-api"
+                element={
+                  <ProtectedRoute>
+                    <div className="col-md-12">
+                      <TestAPI />
+                    </div>
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Main layout routes */}
               <Route
                 path="/"
                 element={
-                  <div className="col-md-3 p-0">
-                    <Sidebar />
-                    <LoginButton />
-                  </div>
+                  <ProtectedRoute>
+                    <div className="col-md-3 p-0">
+                      <Sidebar />
+                      <LoginButton />
+                    </div>
+                  </ProtectedRoute>
                 }
               />
 
@@ -44,11 +76,18 @@ function App() {
               {/* <Route path="/prompts" element={<Prompts />} />
               <Route path="/calendar" element={<Calendar />} /> */}
             </Routes>
-            {/* Main content should always be shown, even on login */}
+
+            {/* Main content */}
             <div className="col-md-9 good-evening">
               <Routes>
-                <Route path="/" element={<Today />} />
-                {/* Add additional routes if necessary */}
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <Today />
+                    </ProtectedRoute>
+                  }
+                />
               </Routes>
             </div>
           </Router>
@@ -58,4 +97,20 @@ function App() {
   );
 }
 
-export default App;
+// Wrap the app with Auth0Provider
+function AppWithAuth() {
+  return (
+    <Auth0Provider
+      domain="dev-ujppivpjk6se3qer.us.auth0.com"
+      clientId="wgLGxyLyQwEUtSaXJ6r03lPPwUa3csq9"
+      authorizationParams={{
+        redirect_uri: "http://localhost:3000/login",
+        audience: "http://localhost:3001/api",
+      }}
+    >
+      <App />
+    </Auth0Provider>
+  );
+}
+
+export default AppWithAuth;
