@@ -60,4 +60,34 @@ router.get("/test", jwtCheck, (req, res) => {
   });
 });
 
+router.get("/entries", async (req, res) => {
+  try {
+    if (!client) {
+      console.error("Database client is not connected");
+      return res.status(500).json({ 
+        error: "Database connection not established",
+        details: "MongoDB client is not initialized"
+      });
+    }
+
+    const userId = req.auth.payload.sub;
+    const db = client.db("App");
+    const collection = db.collection("entries");
+    
+    console.log("Fetching entries for user:", userId);
+    const entries = await collection.find({ userId: userId }).toArray();
+    console.log("Found entries:", entries.length);
+    
+    res.json(entries);
+
+  } catch (e) {
+    console.error("Error fetching entries:", e);
+    res.status(500).json({ 
+      error: "Error fetching entries", 
+      details: e.message,
+      stack: process.env.NODE_ENV === 'development' ? e.stack : undefined
+    });
+  }
+});
+
 module.exports = router;
