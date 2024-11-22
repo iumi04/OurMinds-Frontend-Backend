@@ -15,12 +15,14 @@ const jwtCheck = auth({
 router.use(jwtCheck);
 
 // Middleware to ensure user exists
+// getting user id directly from auth0 /// ASK UMI
 const ensureUser = async (req, res, next) => {
   try {
     const userId = req.auth.payload.sub;
     const db = client.db("App");
     const usersCollection = db.collection("users");
     
+    console.log("the unique user id is: ", userId);
     // Try to find user
     const user = await usersCollection.findOne({ userId: userId });
     

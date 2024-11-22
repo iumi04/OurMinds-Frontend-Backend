@@ -16,11 +16,11 @@ export default function Login() {
 
   useEffect(() => {
     const getToken = async () => {
-      if (isAuthenticated) {
+      if (isAuthenticated && user) {
         try {
           const accessToken = await getAccessTokenSilently();
           setToken(accessToken);
-          console.log("JWT Token:", accessToken); // Added back the token logging
+          console.log("User ID:", user.sub); // Auth0 user ID
           localStorage.setItem('token', accessToken);
         } catch (error) {
           console.error("Error getting access token", error);
