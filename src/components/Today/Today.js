@@ -13,8 +13,9 @@ import apiService from '../../services/apiService';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 const Today = () => {
-  const { logout } = useAuth0();
+  const { logout, user, isAuthenticated: auth0IsAuthenticated } = useAuth0();
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
@@ -30,6 +31,19 @@ const Today = () => {
   const [reflectionError, setReflectionError] = useState(false);
   const [mindfulnessError, setMindfulnessError] = useState(false);
   const [gratitudeError, setGratitudeError] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) return;
+    
+    if (process.env.NODE_ENV === "development") {
+      setIsAuthenticated(true);
+    } else if (auth0IsAuthenticated && user) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      navigate("/login");
+    }
+  }, [auth0IsAuthenticated, isLoading, user, navigate]);
 
   const [currentDate, setCurrentDate] = useState(
     location.state?.selectedDate
@@ -224,7 +238,7 @@ const Today = () => {
                     <img src={Polly} alt="sparkle" />
                   </div>
                   <div className="text-start">
-                    <p className="prompt-content mb-1">TODAY'S PROMPT</p>
+                    <p className="prompt-content mb-1">Hi {user?.nickname}, TODAY'S PROMPT</p>
                     {isLoading && <p>Loading prompt...</p>}
                     {error && <p className="error-message">{error}</p>}
                     {dailyPrompt && (

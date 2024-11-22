@@ -20,7 +20,10 @@ export default function Login() {
         try {
           const accessToken = await getAccessTokenSilently();
           setToken(accessToken);
-          console.log("User ID:", user.sub); // Auth0 user ID
+          console.log("User ID:", user.sub); // Auth0 user ID - displays in console 
+          console.log("Username:", user.nickname);
+          console.log("Full Name:", user.name);
+          console.log("Email:", user.email);
           localStorage.setItem('token', accessToken);
         } catch (error) {
           console.error("Error getting access token", error);
