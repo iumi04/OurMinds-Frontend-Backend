@@ -1,34 +1,11 @@
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
-
-const apiService = {
-  // Authentication added here for login system (TEST) -- Umi
-  register: async (userData) => {
-    try {
-      await axios.post(`${API_BASE_URL}/auth/register`, userData);
-    } catch (error) {
-      console.error("Error registering user:", error);
-      throw error;
-    }
-  },
-
-  login: async (userData) => {
-    try {
-      const response = await axios.post(`${API_BASE_URL}/auth/login`, userData);
-      return response.data.token;
-    } catch (error) {
-      console.error("Error logging in:", error);
-      throw error;
-    }
-  },
-
-  // CREATE
-  // Create prompts in Prompts page
-
-  // create journalentry in today's page
-  createJournalEntry: async (entryData) => {
+export const useApiService = () => {  
+  return{
+  createJournalEntry: async (entryData, token) => {
     try {
       console.log("Attempting to send entry data:", entryData);
       const response = await axios.post(
@@ -36,6 +13,7 @@ const apiService = {
         entryData,
         {
           headers: {
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -53,22 +31,23 @@ const apiService = {
     }
   },
 
-  getJournalEntryByDate: async (date) => {
+  getJournalEntryByDate: async (date, token) => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/journal-entries/byDate/${date}`
+        `${API_BASE_URL}/journal-entries/byDate/${date}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
       );
       return response.data;
     } catch (error) {
-      console.error("Error fetching journal entry by date:", error);
+      console.error("Error fetching journal entry:", error);
       throw error;
     }
   },
-
-  // READ
-  // Read multiple prompts for that day
-
-  // Read previous journal
   getPreviousJournalEntry: async () => {
     try {
       const response = await axios.get(
@@ -78,8 +57,27 @@ const apiService = {
     } catch (error) {
       console.error("Error fetching previous journal entry:", error);
       throw error;
+      }
+    },
+    verifyToken: async (token) => {
+      try {
+        const response = await axios.get(
+          `${API_BASE_URL}/verify-token`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        return response.data;
+      } catch (error) {
+        console.error("Error verifying token:", error);
+        throw error;
+      }
     }
-  },
+  }
 };
 
-export default apiService;
+
+export default useApiService;

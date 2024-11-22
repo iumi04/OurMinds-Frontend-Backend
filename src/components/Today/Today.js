@@ -9,13 +9,13 @@ import PromptSection from '../Prompts/PromptSection';
 import { Modal } from 'react-bootstrap';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import apiService from '../../services/apiService';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useApiService } from '../../services/apiService.js';
 
 const Today = () => {
-  const { logout, user, isAuthenticated: auth0IsAuthenticated } = useAuth0();
+  const { logout, user, isAuthenticated: auth0IsAuthenticated, getAccessTokenSilently } = useAuth0();
+  const apiService = useApiService();
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
@@ -66,7 +66,8 @@ const Today = () => {
 
   const fetchEntryForDate = async (date) => {
     try {
-      const entry = await apiService.getJournalEntryByDate(date.toISOString());
+      const token = await getAccessTokenSilently();
+      const entry = await apiService.getJournalEntryByDate(date.toISOString(), token);
       if (entry) {
         setReflectionContent(entry.reflection || "");
         setMindfulnessContent(entry.mindfulness || "");
@@ -180,6 +181,7 @@ const Today = () => {
 
     if (isValid) {
       try {
+        const token = await getAccessTokenSilently();
         const journalEntry = {
           date: currentDate.toISOString(),
           reflection: reflectionContent,
@@ -187,7 +189,7 @@ const Today = () => {
           gratitude: gratitudeContent,
         };
 
-        const savedEntry = await apiService.createJournalEntry(journalEntry);
+        const savedEntry = await apiService.createJournalEntry(journalEntry, token);
         console.log("Journal entry saved:", savedEntry);
 
         await fetchEntryForDate(currentDate);
@@ -238,7 +240,7 @@ const Today = () => {
                     <img src={Polly} alt="sparkle" />
                   </div>
                   <div className="text-start">
-                    <p className="prompt-content mb-1">Hi {user?.nickname}, TODAY'S PROMPT</p>
+                    <p className="prompt-content mb-1">HI {user?.nickname}, TODAY'S PROMPT</p>
                     {isLoading && <p>Loading prompt...</p>}
                     {error && <p className="error-message">{error}</p>}
                     {dailyPrompt && (
