@@ -32,24 +32,29 @@ const Today = () => {
   const [mindfulnessError, setMindfulnessError] = useState(false);
   const [gratitudeError, setGratitudeError] = useState(false);
 
-  useEffect(() => {
-    if (isLoading) return;
-    
-    if (process.env.NODE_ENV === "development") {
-      setIsAuthenticated(true);
-    } else if (auth0IsAuthenticated && user) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-      navigate("/login");
-    }
-  }, [auth0IsAuthenticated, isLoading, user, navigate]);
-
   const [currentDate, setCurrentDate] = useState(
     location.state?.selectedDate
       ? new Date(location.state.selectedDate)
       : new Date()
   );
+
+  useEffect(() => {
+    if (isLoading) return;
+    
+    if (process.env.NODE_ENV === "development") {
+      setIsAuthenticated(true);
+      fetchEntryForDate(currentDate);
+    } else if (auth0IsAuthenticated && user) {
+      setIsAuthenticated(true);
+      fetchEntryForDate(currentDate);
+    } else {
+      setIsAuthenticated(false);
+      navigate("/login");
+    }
+    
+  }, [auth0IsAuthenticated, isLoading, user, navigate, currentDate]);
+
+  
 
   const handleEditorChange = (section, value) => {
     if (section === "reflection") {
@@ -67,7 +72,14 @@ const Today = () => {
   const fetchEntryForDate = async (date) => {
     try {
       const token = await getAccessTokenSilently();
-      const entry = await apiService.getJournalEntryByDate(date.toISOString(), token);
+      const entries = await apiService.getJournalEntryByDate(date.toISOString(), token);
+      
+      // Find the entry for the current date
+      const entry = entries.find(e => {
+        const entryDate = new Date(e.date);
+        return entryDate.toDateString() === date.toDateString();
+      });
+
       if (entry) {
         setReflectionContent(entry.reflection || "");
         setMindfulnessContent(entry.mindfulness || "");

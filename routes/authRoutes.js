@@ -104,9 +104,11 @@ router.post("/insert", async (req, res) => {
     }
 
     const userId = req.auth.payload.sub;
+    const userName = req.auth.payload.nickname || 'Anonymous';
     const newDocument = {
       ...req.body,
       userId,
+      userName,
       createdAt: new Date()
     };
 

@@ -34,7 +34,7 @@ export const useApiService = () => {
   getJournalEntryByDate: async (date, token) => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/journal-entries/byDate/${date}`,
+        `${API_BASE_URL}/auth/entries`,
         {
           headers: {
             'Authorization': `Bearer ${token}`,
