@@ -10,7 +10,8 @@ root.render(
     domain="dev-ujppivpjk6se3qer.us.auth0.com"
     clientId="mtM5Whv724CgDLVBNOmy2Ic4noHqLLTB"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: `${config.urls.frontend}/login`,
+      audience: config.urls.api
     }}
   >
     <App />

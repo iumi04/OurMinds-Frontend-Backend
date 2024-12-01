@@ -15,6 +15,7 @@ import Calendar from "./components/Calendar/Calendar";
 import Login from "./components/Login/Login";
 import LoginButton from "./components/Login/Login";
 import TestAPI from "./components/TestAPI"; // Add this import
+import config from './auth_config.json';
 
 // Create a protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -104,8 +105,8 @@ function AppWithAuth() {
       domain="dev-ujppivpjk6se3qer.us.auth0.com"
       clientId="wgLGxyLyQwEUtSaXJ6r03lPPwUa3csq9"
       authorizationParams={{
-        redirect_uri: "http://localhost:3000/login",
-        audience: "http://localhost:3001/api",
+        redirect_uri: `${config.urls.frontend}/login`,
+        audience: config.urls.api
       }}
     >
       <App />

@@ -1,0 +1,10 @@
+{
+    "domain": "https://dev-ujppivpjk6se3qer.us.auth0.com/",
+    "clientId": "wgLGxyLyQwEUtSaXJ6r03lPPwUa3csq9",
+    "apiUrl": "http://localhost:3001/api",
+    "urls": {
+    "frontend": "http://localhost:3000",
+    "backend": "http://localhost:3001",
+    "api": "http://localhost:3001/api"
+  }
+  }

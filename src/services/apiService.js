@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
+import config from '../auth_config.json';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = config.urls.api;
 
 export const useApiService = () => {  
   return{
