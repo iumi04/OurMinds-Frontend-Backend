@@ -415,13 +415,14 @@ const Today = () => {
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title>Welcome to OurMinds Journaling</Modal.Title>
+            <Modal.Title>Welcome to OurMinds Journaling!!</Modal.Title>
           </Modal.Header>
           <Modal.Body className="px-4 pb-4">
             <ul className="list-unstyled">
             
-              <li className="mb-3">• Welcome to your journaling journey! While we're still developing more features, here's how to get started with our current functionality</li>
+              <li className="mb-3">• While we're still developing more features, here's how to get started with our current functionality</li>
               <li className="mb-3">• You can find writing prompts in the "Prompts" section on our homepage</li>
+              <li className="mb-3">• https://www.ourmindsjournaling.com/prompts</li>
               <li className="mb-3">• For the 30-Day Challenge participants, you'll receive daily prompts via email</li>
               <li className="mb-3">• Please avoid editing previous entries, as our current system doesn't support entry revisions. This help Haku keep storage costs manageable!</li>
               <li className="mb-3">• Double-check your entry date, especially if you're journaling at midnight after a few drinks! 🍷 We want your memories in the right place</li>
