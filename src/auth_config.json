@@ -3,8 +3,8 @@
     "clientId": "wgLGxyLyQwEUtSaXJ6r03lPPwUa3csq9",
     "apiUrl": "http://localhost:3001/api",
     "urls": {
-    "frontend": "http://localhost:3000",
+    "frontend": "http://app.ourmindsjournaling.com",
     "backend": "http://localhost:3001",
-    "api": "http://localhost:3001/api"
+    "api": "http://app.ourmindsjournaling.com:3001"
   }
   }

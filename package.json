@@ -2,6 +2,7 @@
   "name": "haku-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://app.ourmindsjournaling.com/",
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "@ckeditor/ckeditor5-react": "^6.3.0",
